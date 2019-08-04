@@ -111,6 +111,28 @@ function imagenUsuario(id, res, nombreArchivo) {
 
         usuarioDB.img = nombreArchivo;
 
+        try {
+            fs.mkdirSync(path.resolve(__dirname, `../../uploads`));
+        } catch (err) {
+            if (err.code !== 'EEXIST') {
+                return res.status(500).json({
+                    ok: false,
+                    error: err
+                });
+            }
+        }
+        try {
+            fs.mkdirSync(path.resolve(__dirname, `../../uploads/${tipo}`));
+        } catch (err) {
+            if (err.code !== 'EEXIST') {
+                return res.status(500).json({
+                    ok: false,
+                    error: err
+                });
+            }
+        }
+
+
         usuarioDB.save((err, usuarioGuardado) => {
 
             res.json({
@@ -152,6 +174,27 @@ function imagenProducto(id, res, nombreArchivo) {
         borrarArchivo(productoDB.img, 'productos');
 
         productoDB.img = nombreArchivo;
+
+        try {
+            fs.mkdirSync(path.resolve(__dirname, `../../uploads`));
+        } catch (err) {
+            if (err.code !== 'EEXIST') {
+                return res.status(500).json({
+                    ok: false,
+                    error: err
+                });
+            }
+        }
+        try {
+            fs.mkdirSync(path.resolve(__dirname, `../../uploads/${tipo}`));
+        } catch (err) {
+            if (err.code !== 'EEXIST') {
+                return res.status(500).json({
+                    ok: false,
+                    error: err
+                });
+            }
+        }
 
         productoDB.save((err, productoGuardado) => {
 
