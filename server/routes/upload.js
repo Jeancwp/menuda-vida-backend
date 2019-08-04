@@ -10,7 +10,7 @@ const app = express();
 const Usuario = require('../models/usuario');
 const Producto = require('../models/producto');
 
-app.use(fileUpload({ useTempFiles: true }));
+app.use(fileUpload());
 
 app.put('/upload/:tipo/:id', function(req, res) {
 
